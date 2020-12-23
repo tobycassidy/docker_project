@@ -1,0 +1,7 @@
+services:
+  - docker
+
+before_install:
+  - docker image build -t tobycassidy/review_sentiment .
+  - docker container run tobycassidy/review_sentiment
+  - docker ps
