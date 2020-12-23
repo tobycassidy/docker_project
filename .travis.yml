@@ -1,3 +1,6 @@
+language:
+  - generic
+
 services:
   - docker
 
@@ -5,6 +8,12 @@ before_install:
   - docker image build -t tobycassidy/review_sentiment .
 
 
-deploy:
+before_deploy:
   - docker login --username "$DOCKERUSER" --password "$DOCKERPWD"
-  - docker image push tobycassidy/review_sentiment 
+  
+
+deploy:
+  provider: script
+  script: docker image push tobycassidy/review_sentiment 
+  on:
+    branch: main
